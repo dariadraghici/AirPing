@@ -1,0 +1,9 @@
+#pragma once
+
+#define IDI_APP_ICON 101
+#define ID_EDIT_CLIENT_ID 102
+#define ID_EDIT_CLIENT_SECRET 103
+#define ID_EDIT_CALENDAR_ID 104
+#define ID_BTN_LOGIN 105
+#define ID_STATIC_LOGIN_STATUS 106
+

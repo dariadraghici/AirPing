@@ -1,0 +1,7 @@
+#include "resource.h"
+#include "winres.h"
+
+LANGUAGE LANG_ROMANIAN, SUBLANG_DEFAULT
+
+IDI_APP_ICON ICON "images\\logo.ico"
+
