@@ -1,4 +1,4 @@
-#include "resource.h"
+#include "headers\resource.h"
 #include "winres.h"
 
 LANGUAGE LANG_ROMANIAN, SUBLANG_DEFAULT

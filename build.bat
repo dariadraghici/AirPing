@@ -31,11 +31,11 @@ if %ERRORLEVEL% neq 0 (
 
 echo.
 echo compiling resources...
-rc.exe app.rc
+rc.exe /i headers app.rc
 if %ERRORLEVEL% neq 0 ( echo ERROR: rc.exe failed & pause & exit /b 1 )
 
 echo compiling app...
-cl.exe /EHsc /O2 /W3 /Fe:AirPing.exe main.cpp GoogleCalendar.cpp overlay.cpp app.res ^
+cl.exe /EHsc /O2 /W3 /I headers /Fe:AirPing.exe cpp\main.cpp cpp\GoogleCalendar.cpp cpp\overlay.cpp app.res ^
     user32.lib gdi32.lib shell32.lib winhttp.lib msimg32.lib advapi32.lib ws2_32.lib ole32.lib windowscodecs.lib
 if %ERRORLEVEL% neq 0 ( echo ERROR: compilation failed & pause & exit /b 1 )
 

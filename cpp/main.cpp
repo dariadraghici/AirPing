@@ -170,7 +170,6 @@ static void RunLoginThread(LoginThreadCtx ctx) {
     PostMessageA(ctx.hDlg, WM_LOGIN_DONE, status, (LPARAM)pMsg);
 }
 
-// ----- visual styling resources for the Settings dialog -----
 static HFONT g_hFontTitle = nullptr;
 static HFONT g_hFontLabel = nullptr;
 static HFONT g_hFontEdit = nullptr;
@@ -496,7 +495,7 @@ void FetchMeetingsTask() { // runs in a separate thread, fetches meetings from G
 
 void CheckAlertsTask() { // runs in a separate thread, checks if any meetings are starting soon and shows overlay banners
     auto now = system_clock::now();
-    const int alertOffsets[] = { 0, 5*60, 10*60, 15*60, 20*60, 30*60, 60*60 };
+    const int alertOffsets[] = { 0, 5*60, 15*60, 30*60, 60*60, 3*60*60, 5*60*60, 24*60*60 }; // offsets in seconds: now, 5 min, 15 min, 30 min, 1h, 3h, 5h, 24h
 
     vector<string> pendingBanners;
 
@@ -534,7 +533,17 @@ void CheckAlertsTask() { // runs in a separate thread, checks if any meetings ar
                         string timeStr;
                         if (minutesBefore == 60) {
                             timeStr = "in 1 hour";
-                        } else {
+                        } 
+                        else if (minutesBefore == 180) {
+                            timeStr = "in 3 hours";
+                        } 
+                        else if (minutesBefore == 300) {
+                            timeStr = "in 5 hours";
+                        } 
+                        else if (minutesBefore == 1440) {
+                            timeStr = "in 24 hours";
+                        }
+                        else {
                             timeStr = " starts in " + to_string(minutesBefore) + " minutes";
                         }
 
